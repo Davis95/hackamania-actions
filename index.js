@@ -3,10 +3,6 @@ const actionsCore = require('@actions/core');
 const github = require('@actions/github');
 const axios = require('axios').default;
 
-const deployBuild = () => {
-    actionsCore.
-}
-
 const generateLinks = () => {
     console.log('Generating links...');
     const title = github.context.payload.issue.title;
@@ -33,7 +29,6 @@ const args = comment.split(' ');
 
 if (args.includes('!sailbot') && args.includes('autodeploy')) {
     console.log('Received autodeploy command');
-    deployBuild();
     const links = generateLinks();
     slackSend(links);
 } else {
