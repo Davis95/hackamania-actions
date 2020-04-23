@@ -23,7 +23,7 @@ const slackSend = (links) => {
                 'Content-type': 'application/json'
             }
         }
-    )
+    ).catch(error => console.log(error))
 }
 
 const comment = github.context.payload.comment.body;
