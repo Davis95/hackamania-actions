@@ -3,6 +3,10 @@ const actionsCore = require('@actions/core');
 const github = require('@actions/github');
 const axios = require('axios').default;
 
+const deployBuild = () => {
+    actionsCore.
+}
+
 const generateLinks = () => {
     console.log('Generating links...');
     const title = github.context.payload.issue.title;
@@ -14,8 +18,8 @@ const generateLinks = () => {
 const slackSend = (links) => {
     console.log(links);
     console.log('Sending Slack Notification');
-    axios.post("https://hooks.slack.com/services/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",
-        '{ "text": "Hello Hackamania!" }',
+    axios.post("postman.fmning.com/api/proxy",
+        { "text": "Hello Hackamania!" },
         {
             headers: {
                 'Content-type': 'application/json'
@@ -29,10 +33,9 @@ const args = comment.split(' ');
 
 if (args.includes('!sailbot') && args.includes('autodeploy')) {
     console.log('Received autodeploy command');
+    deployBuild();
     const links = generateLinks();
     slackSend(links);
 } else {
-    console.log('Did not find magic deploy command');
-    // temp
-    console.log(args);
+    console.log('Did not find autodeploy command. Halting workflow.');
 }
