@@ -1,13 +1,10 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Post PR to Slack'
+description: 'When a comment is added to a PR, we will look for a keyword and send slack a detailed message about this PR.'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  comment: 
+    description: 'The comment that triggered the event'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+    default: null
 runs:
   using: 'node12'
   main: 'index.js'
