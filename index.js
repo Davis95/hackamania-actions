@@ -7,7 +7,7 @@ const generateLinks = () => {
     console.log('Generating links...');
     const title = github.context.payload.issue.title;
     const prUrl = github.context.payload.issue.html_url;
-    const jiraId = title.split(/^IDN.*\:/g)[0];
+    const jiraId = title.split(':')[0];
     return [`https://sailpoint.atlassian.net/browse/${jiraId}`, prUrl, 'www.demo.com/1', title]
 }
 
