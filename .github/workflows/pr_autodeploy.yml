@@ -25,12 +25,12 @@ jobs:
 
     # Check for auto deploy
     - name: Run Autodeploy Check Step
-      uses: $GITHUB_WORKSPACE/build/actions/check-for-autodeploy
+      uses: $GITHUB_REPOSITORY/build/actions/check-for-autodeploy@master
 
     # Black Box step
     - name: Run Black Box Step
-      uses: $GITHUB_WORKSPACE/build/actions/black-box
+      uses: $GITHUB_REPOSITORY/build/actions/black-box@master
 
     # Slack send
     - name: Run Slack Notification Step
-      uses: $GITHUB_WORKSPACE/build/actions/slack-send
+      uses: $GITHUB_REPOSITORY/build/actions/slack-send@master
