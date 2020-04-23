@@ -14,10 +14,8 @@ const generateLinks = () => {
 const slackSend = (links) => {
     console.log(links);
     console.log('Sending Slack Notification');
-    axios.post("https://hooks.slack.com/services/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",
-        {
-            text: 'Hello Hackamania!'
-        },
+    axios.post("https://hooks.slack.com/services/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",
+        '{ "text": "Hello Hackamania!" }',
         {
             headers: {
                 'Content-type': 'application/json'
