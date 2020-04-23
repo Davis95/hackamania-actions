@@ -16,10 +16,5 @@
   "bugs": {
     "url": "https://github.com/Davis95/hackamania-actions/issues"
   },
-  "homepage": "https://github.com/Davis95/hackamania-actions#readme",
-  "dependencies": {
-    "@actions/core": "^1.2.3",
-    "@actions/github": "^2.1.1",
-    "axios": "^0.19.2"
-  }
+  "homepage": "https://github.com/Davis95/hackamania-actions#readme"
 }
