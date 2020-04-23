@@ -2,19 +2,57 @@
 const github = require('@actions/github');
 const axios = require('axios').default;
 
-const generateLinks = () => {
+const generateMessageInfo = () => {
     console.log('Generating links...');
     const title = github.context.payload.issue.title;
     const prUrl = github.context.payload.issue.html_url;
+    const sender = github.context.payload.sender;
     const jiraId = title.split(':')[0];
-    return [`https://sailpoint.atlassian.net/browse/${jiraId}`, prUrl, 'www.demo.com/1', title]
+    return {
+        title: title,
+        jiraLink:`https://sailpoint.atlassian.net/browse/${jiraId}`,
+        prLink: prUrl,
+        demoLink: 'www.google.com',
+        senderName: sender.login
+    };
 }
 
-const slackSend = (links) => {
-    console.log(links);
+const slackSend = (messageInfo) => {
+    console.log(messageInfo);
     console.log('Sending Slack Notification');
     axios.post("http://postman.fmning.com/api/proxy",
-        { "text": "Hello Hackamania!" },
+        {
+            "blocks": [
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": `${messageInfo.title}\n ${messageInfo.senderName} is requesting a review.`
+                    }
+                },
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": `*Github:*\n ${messageInfo.prLink}`
+                    }
+                },
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": `*Jira:*\n ${messageInfo.jiraLink}`
+                    }
+                },
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": `*Demo:*\n ${messageInfo.demoLink}`
+                    }
+                }
+            ]
+        },
         {
             headers: {
                 'Content-type': 'application/json'
@@ -23,5 +61,5 @@ const slackSend = (links) => {
     ).catch(error => console.log(error))
 }
 
-const links = generateLinks();
-slackSend(links);
+const messageInfo = generateMessageInfo();
+slackSend(messageInfo);

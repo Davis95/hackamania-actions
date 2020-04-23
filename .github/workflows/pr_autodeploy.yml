@@ -25,12 +25,12 @@ jobs:
 
     # Check for auto deploy
     - name: Run Autodeploy Check Step
-      uses: ./build/actions/checkForAutodeploy.yaml
+      uses: ./build/actions/check-for-autodeploy
 
     # Black Box step
     - name: Run Black Box Step
-      run: ./build/actions/blackbox.yaml
+      run: ./build/actions/black-box
 
     # Slack send
     - name: Run Slack Notification Step
-      uses: ./build/actions/slackSend.yaml
+      uses: ./build/actions/slack-send
