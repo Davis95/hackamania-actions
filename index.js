@@ -32,5 +32,5 @@ if (args.includes('!sailbot') && args.includes('autodeploy')) {
     const links = generateLinks();
     slackSend(links);
 } else {
-    console.log('Did not find autodeploy command. Halting workflow.');
+    actionsCore.setFailed('Did not find autodeploy command. Halting workflow.');
 }
