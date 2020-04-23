@@ -14,7 +14,7 @@ const generateLinks = () => {
 const slackSend = (links) => {
     console.log(links);
     console.log('Sending Slack Notification');
-    axios.post("postman.fmning.com/api/proxy",
+    axios.post("http://postman.fmning.com/api/proxy",
         { "text": "Hello Hackamania!" },
         {
             headers: {
