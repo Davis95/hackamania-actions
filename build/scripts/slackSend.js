@@ -1,5 +1,4 @@
 
-const actionsCore = require('@actions/core');
 const github = require('@actions/github');
 const axios = require('axios').default;
 
@@ -24,13 +23,5 @@ const slackSend = (links) => {
     ).catch(error => console.log(error))
 }
 
-const comment = github.context.payload.comment.body;
-const args = comment.split(' ');
-
-if (args.includes('!sailbot') && args.includes('autodeploy')) {
-    console.log('Received autodeploy command');
-    const links = generateLinks();
-    slackSend(links);
-} else {
-    actionsCore.setFailed('Did not find autodeploy command. Halting workflow.');
-}
+const links = generateLinks();
+slackSend(links);

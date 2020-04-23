@@ -1,0 +1,5 @@
+name: 'Check for Autodeploy'
+description: 'When a comment is added to a PR, we will look for a keyword to start the auto deploy workflow'
+runs:
+  using: 'node12'
+  main: 'build/scripts/checkAutodeploy.js'

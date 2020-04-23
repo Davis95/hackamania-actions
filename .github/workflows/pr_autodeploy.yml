@@ -19,11 +19,18 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
+    # Install deps
     - name: Install Deps
       run: npm ci
 
-    - name: Run Autodeploy
-      uses: ./
-    # - name: Build Artifacts
-    #   if: success()
-    #   run:
+    # Check for auto deploy
+    - name: Run Autodeploy Check Step
+      uses: ./build/actions/checkForAutodeploy.yaml
+
+    # Black Box step
+    - name: Run Black Box Step
+      run: ./build/actions/blackbox.yaml
+
+    # Slack send
+    - name: Run Slack Notification Step
+      uses: ./build/actions/slackSend.yaml
