@@ -5,8 +5,8 @@ const axios = require('axios').default;
 
 const generateLinks = () => {
     console.log('Generating links...');
-    const title = github.context.issue.title;
-    const prUrl = github.context.issue.html_url;
+    const title = github.context.payload.issue.title;
+    const prUrl = github.context.payload.issue.html_url;
     const jiraId = title.split(/^IDN.*\:/g)[0];
     return [`https://sailpoint.atlassian.net/browse/${jiraId}`, prUrl, 'www.demo.com/1', title]
 }
@@ -26,25 +26,15 @@ const slackSend = (links) => {
     )
 }
 
-
-console.log(github.context);
-
 const comment = github.context.payload.comment.body;
 const args = comment.split(' ');
 
-if (args.includes('!SailBot') && args.includes('autodeploy')) {
+if (args.includes('!sailbot') && args.includes('autodeploy')) {
     console.log('Received autodeploy command');
     const links = generateLinks();
     slackSend(links);
+} else {
+    console.log('Did not find magic deploy command');
+    // temp
+    console.log(args);
 }
-
-// Get comment
-
-// Determine if comment is asking for magic deploy
-// @SailBot autodeploy pod=foo
-
-// Yes -> run build script
-
-// Generate values and links for Slack
-
-
