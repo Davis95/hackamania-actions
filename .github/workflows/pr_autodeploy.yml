@@ -19,7 +19,9 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs the autodeploy action we've created at the root
+    - name: Install Deps
+      run: npm ci
+
     - name: Run Autodeploy
       uses: ./
     # - name: Build Artifacts
