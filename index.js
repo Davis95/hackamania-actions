@@ -5,7 +5,10 @@ const axios = require('axios').default;
 
 const generateLinks = () => {
     console.log('Generating links...');
-    return ['www.jira.com/f1', 'www.github.com/pull/1', 'www.demo.com/1', 'IDNHACK-1: Pull Request Title']
+    const title = github.context.issue.title;
+    const prUrl = github.context.issue.html_url;
+    const jiraId = title.split(/^IDN.*\:/g)[0];
+    return [`https://sailpoint.atlassian.net/browse/${jiraId}`, prUrl, 'www.demo.com/1', title]
 }
 
 const slackSend = (links) => {
@@ -26,10 +29,22 @@ const slackSend = (links) => {
 
 console.log(github.context);
 
-const comment = github.context.payload;
+const comment = github.context.payload.comment.body;
 const args = comment.split(' ');
 
-console.log(actionsCore.getInput('comment'));
-console.log(github.context.payload);
-// axios.post("https://hooks.slack.com/services/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") ///
+if (args.includes('!SailBot') && args.includes('autodeploy')) {
+    console.log('Received autodeploy command');
+    const links = generateLinks();
+    slackSend(links);
+}
+
+// Get comment
+
+// Determine if comment is asking for magic deploy
+// @SailBot autodeploy pod=foo
+
+// Yes -> run build script
+
+// Generate values and links for Slack
+
 
