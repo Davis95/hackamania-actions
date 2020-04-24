@@ -14,7 +14,7 @@ const generateMessageInfo = () => {
         title: `[${process.env.MODULE_NAME}] ${title}`,
         jiraLink:`https://sailpoint.atlassian.net/browse/${jiraId}`,
         prLink: prUrl,
-        demoLink: `https://${process.env.DEMO_ORG}.identitysoon.com/u/d/dashboard?ui=${buildNumber}`,
+        demoLink: `https://${process.env.DEMO_ORG}.identitysoon.com/ui/d/dashboard?ui=${buildNumber}`,
         senderName: sender.login
     };
 }
