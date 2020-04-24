@@ -27,7 +27,7 @@ const slackSend = (messageInfo) => {
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": `${messageInfo.title}\n ${messageInfo.senderName} is requesting a review.`
+                        "text": `*${messageInfo.title}*\n ${messageInfo.senderName} is requesting a review.`
                     }
                 },
                 {

@@ -6,11 +6,15 @@ name: CI
 # events but only for the master branch
 on:
   issue_comment:
+   branches: 
+     - master
+    types:
+     - created
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  # This workflow contains a single job called "autodelpoy-flow"
+  autodeploy-flow:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -25,8 +29,8 @@ jobs:
       run: npm ci
 
     # Check for auto deploy
-    - name: Run Autodeploy Check Step
-      uses: ./.github/actions/check-for-autodeploy
+    - name: Get Autodeploy Command
+      uses: ./.github/actions/get-autdeploy-command
 
     # Black Box step
     - name: Run Black Box Step
@@ -34,4 +38,5 @@ jobs:
 
     # Slack send
     - name: Run Slack Notification Step
+      if: env.NOTIFY
       uses: ./.github/actions/slack-send
