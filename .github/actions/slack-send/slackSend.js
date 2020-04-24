@@ -1,5 +1,6 @@
 
 const github = require('@actions/github');
+const actionsCore = require('@actions/core');
 const axios = require('axios').default;
 
 const generateMessageInfo = () => {
@@ -9,10 +10,10 @@ const generateMessageInfo = () => {
     const sender = github.context.payload.sender;
     const jiraId = title.split(':')[0];
     return {
-        title: title,
+        title: `[${process.env.MODULE_NAME}] ${title}`,
         jiraLink:`https://sailpoint.atlassian.net/browse/${jiraId}`,
         prLink: prUrl,
-        demoLink: 'www.google.com',
+        demoLink: `https://pde2e.identitysoon.com/d/dashboard?${jiraId}`,
         senderName: sender.login
     };
 }
@@ -58,7 +59,9 @@ const slackSend = (messageInfo) => {
                 'Content-type': 'application/json'
             }
         }
-    ).catch(error => console.log(error))
+    ).catch(error => {
+        actionsCore.setFailed(error);
+    })
 }
 
 const messageInfo = generateMessageInfo();

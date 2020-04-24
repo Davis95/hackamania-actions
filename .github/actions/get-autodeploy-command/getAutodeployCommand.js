@@ -7,7 +7,7 @@ const args = comment.split(' ');
 
 if (args.includes('!sailbot') && args.includes('autodeploy')) {
     actionsCore.info('Received autodeploy command');
-    let autodeployCommandArgs = {
+    const autodeployCommandArgs = {
         pod: 'tahiti',
         notify: 'true'
     }
@@ -20,6 +20,7 @@ if (args.includes('!sailbot') && args.includes('autodeploy')) {
         }
         actionsCore.exportVariable(key.toUpperCase(), argValue);
     });
+
     actionsCore.info('Command Parsed Successfully');
 } else {
     actionsCore.setFailed('Did not find autodeploy command. Halting workflow.');
