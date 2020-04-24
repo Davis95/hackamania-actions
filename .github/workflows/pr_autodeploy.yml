@@ -6,7 +6,7 @@ name: CI
 # events but only for the master branch
 on:
   issue_comment:
-   branches: 
+    branches: 
      - master
     types:
      - created

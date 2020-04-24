@@ -1,4 +1,4 @@
-name: 'Get Auto'
+name: 'Get Autodeploy Command'
 description: 'When a comment is added to a PR, we will look for a keyword to start the auto deploy workflow'
 runs:
   using: 'node12'
