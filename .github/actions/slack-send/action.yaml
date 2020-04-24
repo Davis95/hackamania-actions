@@ -2,4 +2,4 @@ name: 'Post to Slack'
 description: 'Send slack a detailed message about this PR.'
 runs:
   using: 'node12'
-  main: 'build/scripts/slackSend.js'
+  main: 'slackSend.js'

@@ -1,4 +1,0 @@
-name: 'Perform black box step in the autodeploy flow'
-description: 'Represents whatever build/deploy/test processes you need to run.'
-run:
-  build/scripts/publish.sh

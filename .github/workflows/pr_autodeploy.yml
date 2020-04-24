@@ -26,12 +26,12 @@ jobs:
 
     # Check for auto deploy
     - name: Run Autodeploy Check Step
-      uses: Davis95/hackamania-actions/.github/actions/check-for-autodeploy
+      uses: ./.github/actions/check-for-autodeploy
 
     # Black Box step
     - name: Run Black Box Step
-      uses: /.github/actions/black-box
+      run: chmod +x build/scripts/publish.sh
 
     # Slack send
     - name: Run Slack Notification Step
-      uses: /.github/actions/slack-send
+      uses: ./.github/actions/slack-send
