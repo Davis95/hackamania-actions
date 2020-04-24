@@ -16,7 +16,7 @@ if (args.includes('!sailbot') && args.includes('autodeploy')) {
         let argValue = autodeployCommandArgs[key];
         const arg = args.find(arg => arg.includes(key));
         if (arg) {
-            argValue = arg.split('=')[2];
+            argValue = arg.split('=')[1];
         }
         actionsCore.exportVariable(key.toUpperCase(), argValue);
     });
