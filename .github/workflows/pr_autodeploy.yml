@@ -30,7 +30,7 @@ jobs:
 
     # Black Box step
     - name: Run Black Box Step
-      run: chmod +x build/scripts/publish.sh
+      run: ./build/scripts/publish.sh
 
     # Slack send
     - name: Run Slack Notification Step
