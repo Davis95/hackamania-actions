@@ -17,7 +17,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+    - name: Checkout Repo
+      uses: actions/checkout@v2
 
     # Install deps
     - name: Install Deps
@@ -25,7 +26,7 @@ jobs:
 
     # Check for auto deploy
     - name: Run Autodeploy Check Step
-      uses: /.github/actions/check-for-autodeploy
+      uses: Davis95/hackamania-actions/.github/actions/check-for-autodeploy
 
     # Black Box step
     - name: Run Black Box Step
