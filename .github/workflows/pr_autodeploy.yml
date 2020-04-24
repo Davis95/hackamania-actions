@@ -30,7 +30,7 @@ jobs:
 
     # Check for auto deploy
     - name: Get Autodeploy Command
-      uses: ./.github/actions/get-autdeploy-command
+      uses: ./.github/actions/get-autodeploy-command
 
     # Black Box step
     - name: Run Black Box Step
