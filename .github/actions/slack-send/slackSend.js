@@ -4,23 +4,24 @@ const actionsCore = require('@actions/core');
 const axios = require('axios').default;
 
 const generateMessageInfo = () => {
-    console.log('Generating links...');
+    actionsCore.info('Generating links...');
     const title = github.context.payload.issue.title;
     const prUrl = github.context.payload.issue.html_url;
     const sender = github.context.payload.sender;
     const jiraId = title.split(':')[0];
+    const buildNumber = jiraId.split('-').join('');
     return {
         title: `[${process.env.MODULE_NAME}] ${title}`,
         jiraLink:`https://sailpoint.atlassian.net/browse/${jiraId}`,
         prLink: prUrl,
-        demoLink: `https://${process.env.DEMO_ORG}.identitysoon.com/d/dashboard?${jiraId}`,
+        demoLink: `https://${process.env.DEMO_ORG}.identitysoon.com/u/d/dashboard?ui=${buildNumber}`,
         senderName: sender.login
     };
 }
 
 const slackSend = (messageInfo) => {
-    console.log(messageInfo);
-    console.log('Sending Slack Notification');
+    actionsCore.info(messageInfo);
+    actionsCore.info('Sending Slack Notification');
     axios.post("http://postman.fmning.com/api/proxy",
         {
             "blocks": [
