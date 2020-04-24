@@ -9,7 +9,8 @@ if (args.includes('!sailbot') && args.includes('autodeploy')) {
     actionsCore.info('Received autodeploy command');
     const autodeployCommandArgs = {
         pod: 'tahiti',
-        notify: 'true'
+        notify: 'true',
+        demo_org: 'pde2e'
     }
     
     Object.keys(autodeployCommandArgs).forEach(key => {
